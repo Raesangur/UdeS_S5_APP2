@@ -48,7 +48,6 @@ phi_4 = [x.^3]';
 phi_5 = [x.^4]';
 phi_6 = [x.^5]';
 
-P1 = [phi_1, phi_2];
 P2 = [phi_1, phi_2, phi_3];
 P3 = [phi_1, phi_2, phi_3, phi_4];
 P4 = [phi_1, phi_2, phi_3, phi_4, phi_5];
@@ -56,25 +55,21 @@ P5 = [phi_1, phi_2, phi_3, phi_4, phi_5, phi_6];
 
 Y = F';
 
-A1 = (inv(P1' * P1) * P1' * Y)'
 A2 = (inv(P2' * P2) * P2' * Y)'
 A3 = (inv(P3' * P3) * P3' * Y)'
 A4 = (inv(P4' * P4) * P4' * Y)'
 A5 = (inv(P5' * P5) * P5' * Y)'
 
-F1 = A1(1) + A1(2) .* x;
 F2 = A2(1) + A2(2) .* x + A2(3) .* x.^2;
 F3 = A3(1) + A3(2) .* x + A3(3) .* x.^2 + A3(4) .* x.^3;
 F4 = A4(1) + A4(2) .* x + A4(3) .* x.^2 + A4(4) .* x.^3 + A4(5) .* x.^4;
 F5 = A5(1) + A5(2) .* x + A5(3) .* x.^2 + A5(4) .* x.^3 + A5(5) .* x.^4 + A5(6) .* x.^5;
 
 
-E1   = sum((F1 - F).^2);
 E2   = sum((F2 - F).^2);
 E3   = sum((F3 - F).^2);
 E4   = sum((F4 - F).^2);
 E5   = sum((F5 - F).^2);
-RMS1 = sqrt(1 / length(x) * E1)
 RMS2 = sqrt(1 / length(x) * E2)
 RMS3 = sqrt(1 / length(x) * E3)
 RMS4 = sqrt(1 / length(x) * E4)
@@ -83,7 +78,6 @@ RMS5 = sqrt(1 / length(x) * E5)
 
 plot(x, F, "*")
 hold on
-plot(x, F1)
 plot(x, F2)
 plot(x, F3)
 plot(x, F4)
